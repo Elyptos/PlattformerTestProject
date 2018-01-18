@@ -9,4 +9,14 @@ public class Coin : MonoBehaviour
     {
         transform.Rotate(90 * Time.deltaTime, 0, 0);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        switch (gameObject.tag)
+        {
+            case "Coin":
+                Destroy(gameObject);
+                break;
+        }
+    }
 }
