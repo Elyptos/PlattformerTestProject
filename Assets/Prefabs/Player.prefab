@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65378434011358230
 BoxCollider:
@@ -124,5 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoundsCollider: {fileID: 65378434011358230}
-  JumpForce: 5
+  JumpForce: 7
+  MovementSpeed: 0.25
   JumpKey: 32

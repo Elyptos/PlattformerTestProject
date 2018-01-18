@@ -33,8 +33,12 @@ public class Player : MonoBehaviour {
 
     private Rigidbody rigid;
 
+    private Vector3 playerPos;
+
     // Use this for initialization
     void Start () {
+        playerPos = transform.position;
+
         rigid = GetComponent<Rigidbody>();
     }
 	
@@ -48,22 +52,11 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //Vector3 vel = Vector3.one;
+        playerPos.y = transform.position.y;
+        playerPos.x += Input.GetAxis("Horizontal") * MovementSpeed;
+        playerPos.z += Input.GetAxis("Vertical") * MovementSpeed;
 
-        //vel *= Input.GetAxis("Horizontal") * MovementSpeed;
-
-        //vel.x *= Input.GetAxis("Horizontal") * MovementSpeed;
-        //vel.y *= Input.GetAxis("Vertical") * MovementSpeed;
-
-
-        //rigid.velocity = vel;
-
-        Vector3 pos = this.transform.position;
-
-        pos.x += Input.GetAxis("Horizontal") * MovementSpeed;
-        pos.z += Input.GetAxis("Vertical") * MovementSpeed;
-
-        this.transform.position = pos;
+        this.transform.position = Vector3.Lerp(transform.position, playerPos, 12 * Time.deltaTime);
 
         CheckIfGrounded();
     }
