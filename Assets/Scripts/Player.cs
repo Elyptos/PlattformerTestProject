@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     }
 
     private bool isOnGround;
+    private bool canPrefDoubleJump = true;
 
     public bool IsGrounded
     {
@@ -48,7 +49,12 @@ public class Player : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(JumpKey))
         {
-            Jump(false);
+            Jump(canPrefDoubleJump);
+
+            if(!IsGrounded)
+            {
+                canPrefDoubleJump = false;
+            }
         }
 
         Vector3 cameraPos = Camera.transform.position;
@@ -87,6 +93,18 @@ public class Player : MonoBehaviour {
         RaycastHit hit;
 
         bool b = Physics.Raycast(transform.position, Down ? Vector3.down : Vector3.up, out hit, BoundsCollider.bounds.extents.y + 0.1f);
+
+        if (b != IsGrounded)
+        {
+            if (b)
+            {
+                
+            }
+            else
+            {
+                canPrefDoubleJump = true;
+            }
+        }
 
         isOnGround = b;
     }
