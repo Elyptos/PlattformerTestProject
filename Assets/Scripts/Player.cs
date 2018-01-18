@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
     public float JumpForce = 5f;
     public float MovementSpeed = 2f;
 
+    public Camera Camera;
+
     public KeyCode JumpKey = KeyCode.Space;
 
     private bool down = true;
@@ -48,6 +50,12 @@ public class Player : MonoBehaviour {
         {
             Jump(false);
         }
+
+        Vector3 cameraPos = Camera.transform.position;
+
+        cameraPos.x = playerPos.x;
+
+        Camera.transform.position = cameraPos;
 	}
 
     private void FixedUpdate()
