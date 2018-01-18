@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     //Public Editor variables
     public Collider BoundsCollider;
     public float JumpForce = 5f;
+    public float MovementSpeed = 2f;
 
     public KeyCode JumpKey = KeyCode.Space;
 
@@ -47,6 +48,23 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        //Vector3 vel = Vector3.one;
+
+        //vel *= Input.GetAxis("Horizontal") * MovementSpeed;
+
+        //vel.x *= Input.GetAxis("Horizontal") * MovementSpeed;
+        //vel.y *= Input.GetAxis("Vertical") * MovementSpeed;
+
+
+        //rigid.velocity = vel;
+
+        Vector3 pos = this.transform.position;
+
+        pos.x += Input.GetAxis("Horizontal") * MovementSpeed;
+        pos.z += Input.GetAxis("Vertical") * MovementSpeed;
+
+        this.transform.position = pos;
+
         CheckIfGrounded();
     }
 
